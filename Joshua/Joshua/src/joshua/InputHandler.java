@@ -34,7 +34,7 @@ public class InputHandler {
                counter ++;
             }
             
-            POSDeterminationAlgorithm a = POSDeterminationAlgorithm();
+            POSDeterminationAlgorithm a = new POSDeterminationAlgorithm();
             wordsInSentence = a.determine(wordsInSentence);
          
         }
