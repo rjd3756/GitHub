@@ -12,3 +12,6 @@ RJ
 RJ
 ty
 RJ
+movies
+holidays
+mainland
