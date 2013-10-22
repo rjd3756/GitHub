@@ -25,12 +25,8 @@ public class POSDeterminationAlgorithm {
     public POSDeterminationAlgorithm(){
     }
     
-    public boolean determine(Word[] words){
-        ArrayList<String> POS = new ArrayList<>();
-        for(Word word : words){
-            POS.add(word.stringPOS(word.getPOS()));
-        }
-        countPOSIssues(POS);
+    public boolean isDeterminate(Word[] words){
+        ArrayList<String> POS = createPOS(words);       
         //Test Print statement
         System.out.println(POS.toString());
         if(POS.toString().contains("/")){
@@ -54,7 +50,24 @@ public class POSDeterminationAlgorithm {
         }else{
             return true;
         }
+    }
         
+    public Word[] resolvePOS(Word[] words){
+        ArrayList<String> POS = createPOS(words);
+        //the algorithm will run entirely through all statements until a 
+        //determinate form is reached
+        while(!(isDeterminate(words))){
+            //The entire algorithm shall be written within this loop
+        }
+        
+        //finalizes changes by attatching the correct Parts of Speech to the words
+        int counter = 0;
+        for(Word word : words){
+            word.setPOS(POS.get(counter));
+            counter ++;
+        }
+        return words;
+    }
         
         /*i am going to outline the algorithm in comments here
          * 
@@ -91,27 +104,7 @@ public class POSDeterminationAlgorithm {
          * 
          * 
          */
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-   
-        
-        
-        //this is just so I can run the program to test
-        //in the future this will hopefully return the sentence structure that
-        //lacks undetermined parts of speech
-    }
+    //counts all the current issues with the parts of speech in the current sentence
         private void countPOSIssues(ArrayList<String> sentenceStructure){
         
         for(String a : sentenceStructure){
@@ -145,5 +138,13 @@ public class POSDeterminationAlgorithm {
         }
         
     }
+        //creates a list of parts of speech from the given list of words
+        public ArrayList<String> createPOS(Word[] words){
+            ArrayList<String> POS = new ArrayList<>();
+            for(Word word : words){
+                POS.add(word.stringPOS(word.getPOS()));
+            }
+            return POS;
+        }
 
 }

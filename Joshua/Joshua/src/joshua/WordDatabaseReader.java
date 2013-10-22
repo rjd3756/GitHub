@@ -53,6 +53,7 @@ public class WordDatabaseReader {
              //catches if the word is not found in the database
             }catch(NullPointerException e){
                     System.out.println("The word " + word + " is unknown to me!!!!");
+                    
                     //creates a new word with type unknown and all data false
                     this.w = new Word(word, "u", false, false, false, false, false);
                     try{
