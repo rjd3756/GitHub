@@ -40,11 +40,15 @@ public class POSDeterminationAlgorithm {
          * it seems better to have the program attempt to figure out what words
          * it does not recognize are.
          * 
-         * 
+         * THIS PART CAN BE EXCLUDED FOR NOW SINCE ITS IMPLEMENTATION WOULD
+         * RUN THE POS ALGORITHM MULTIPLE TIMES AND REALLY ISNT THE MAIN PART
+         * OF THE ALGORITHM
          * first, compound sentences and clauses must be addressed
          * split compound sentences into two
          * remove clauses and evaluate with a different algorithm
          * 
+         * 
+         * THIS IS NECESSARY
          * adjectives should be assigned to the word in which they are attached
          * remember that multiple adjectives and even adverbs could be attached
          * to a single word. so loop through until all of these can be placed in

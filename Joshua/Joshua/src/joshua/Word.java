@@ -1,5 +1,7 @@
 package joshua;
 
+import java.util.ArrayList;
+
 /**
  *This class contains the object word
  * Word is all of the information that is stored in a word in a sentence
@@ -12,7 +14,12 @@ public class Word {
     private boolean toBe;
     private boolean verbIng;
     private boolean aux;
-
+    private ArrayList<Word> adjectiveBin = new ArrayList();
+    private ArrayList<Word> adverbBin = new ArrayList();
+    private String article = "";
+    private ArrayList<Word> possession = new ArrayList();
+    public String string;
+    
     //Assigns all of the variables and creates a word object
     public Word(String wordString, String POS, boolean pastParticiple, boolean negative,  boolean toBe,  boolean verbIng,  boolean aux){
         
@@ -31,6 +38,65 @@ public class Word {
         Word word = new Word(wordString, POS, pastParticiple, negative, toBe, verbIng,
                     aux);
         return word;
+    }
+    
+    //assigns a noun or pronoun possession of the word
+    public void assignPossession(Word possessor){
+        //checks to make sure the word is not already possessed
+        if (!possession.contains(possessor)){
+             possession.add(possessor);
+        }else{
+        //Remove this print statement after I make sure there is no repeated
+        //possession assignments
+        System.out.println(possessor.getName() + " already was assigned possession of " + this.getName());
+        }   
+    }
+    
+    //removes a specific element from the list when provided with that element
+    public void removePossession(Word possessor){
+        //checks to make sure the word is possessed by possessor
+        if(possession.contains(possessor)){
+            possession.remove(possessor);
+        }else{
+            //remove this print statement after I make sure there is no removal
+            //of possession uneccessarily
+            System.out.println(possessor.getName() + " did not possess " + this.getName() + "and therefore cannot remove possession");
+        }
+    }
+    
+    //returns the arraylist of who or what possesses this word
+    public ArrayList<Word> getPossession(){
+        return possession;
+    }
+    
+    //assigns an article to the word
+    public void assignArticle(String article){
+        this.article = article;
+    }
+    
+    //returns the article assigned to this word or "" if one has not been assigned
+    public String getArticle(){
+        return article;
+    }
+    
+    //returns an arraylist of all the adjectives assigned to this word
+    public ArrayList<Word> getAdjectives(){
+        return adjectiveBin;
+    }
+    
+    //adds an adjective to this word
+    public void assignAdjective(Word adjective){
+        adjectiveBin.add(adjective);
+    }
+    
+    //adds an adverb to this word
+    public void assignAdverb(Word adverb){
+        adverbBin.add(adverb);
+    }
+    
+    //returns an arraylist of all the adverbs assigned to this word
+    public ArrayList<Word> getAdverbs(){
+        return adverbBin;
     }
     
     //returns the human spelling of the word as a string
@@ -185,7 +251,6 @@ public class Word {
         return POS;
     }
     
-    public String string;
 }
 
     
