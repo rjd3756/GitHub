@@ -4,6 +4,9 @@
  */
 package joshua;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +25,36 @@ public class POSDeterminationAlgorithm {
     public POSDeterminationAlgorithm(){
     }
     
-    public Word[] determine(Word[] words){
+    public boolean determine(Word[] words){
         ArrayList<String> POS = new ArrayList<>();
         for(Word word : words){
             POS.add(word.stringPOS(word.getPOS()));
         }
         countPOSIssues(POS);
+        //Test Print statement
+        System.out.println(POS.toString());
+        if(POS.toString().contains("/")){
+             try{
+                  String filename= "UnknownSentences.txt";
+                  BufferedWriter fw = new BufferedWriter(new FileWriter(filename,true)); //the true will append the new data
+                  fw.newLine();
+                  for(Word word : words){
+                      fw.write(word.getName() + " ");
+                  }
+                  fw.newLine();
+                  fw.write(POS.toString());//appends the string to the file
+                  fw.newLine();
+                  fw.close();
+                   }
+                   catch(IOException ioe)
+                    {
+                      System.err.println("IOException: " + ioe.getMessage());
+                     }
+            return false;
+        }else{
+            return true;
+        }
+        
         
         /*i am going to outline the algorithm in comments here
          * 
@@ -78,18 +105,12 @@ public class POSDeterminationAlgorithm {
         
         
         
-        
-        
-        
-        
-        //Test Print statement
-        System.out.println(POS.toString());
+   
         
         
         //this is just so I can run the program to test
         //in the future this will hopefully return the sentence structure that
         //lacks undetermined parts of speech
-        return words;
     }
         private void countPOSIssues(ArrayList<String> sentenceStructure){
         

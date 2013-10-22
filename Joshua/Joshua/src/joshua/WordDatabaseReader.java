@@ -19,7 +19,7 @@ public class WordDatabaseReader {
     //if the word is not in the database it writes it in the text file Unknown words
     public Word returnWord(String word)throws FileNotFoundException, IOException{
     
-        BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\rj\\Desktop\\Joshua\\Joshua\\src\\joshua\\WordDatabase.csv"));
+        BufferedReader in = new BufferedReader(new FileReader("WordDatabase.csv"));
 
         String currentLine = "";
         boolean match = false;
